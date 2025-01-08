@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <nav class="bg-white shadow-md p-4 flex justify-center space-x-4" hx-boost="true">
+        <a class="text-blue-600 hover:text-blue-800" hx-get="/home" hx-target="#content">Home</a>
+        <a class="text-blue-600 hover:text-blue-800" hx-get="/about" hx-target="#content">About</a>
+        <a class="text-blue-600 hover:text-blue-800" hx-get="/contact" hx-target="#content">Contact</a>
+    </nav>
+    
+    <div id="content" class="p-6">
+       
+    </div>
+
+    <div class="p-6">
+        <h1 class="text-3xl font-bold text-center">Welcome to the Index Page</h1>
+        <p class="text-center">This is the main page </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center space-x-4 p-6">
+
+        <div class="bg-white shadow-lg rounded-lg p-6 w-80 mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Upload PDF</h2>
+            <form hx-post="/upload" hx-encoding="multipart/form-data" hx-target="#uploadResponsed">
+                <input type="file" name="file" accept="application/pdf" class="mb-4">
+                <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">Upload</button>
+            </form>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-6 w-80 mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Upload Anything here</h2>
+            <form hx-post="/upload" hx-encoding="multipart/form-data" hx-target="#uploadResponsed">
+                <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png,.gif,.go,.xlsx" class="mb-4">
+                <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">Upload</button>
+            </form>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-6 w-80 mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Get Files and Other</h2>
+            <form hx-get="/readData" hx-target="#uploadResponsed">
+                <input type="text" name="fileName" placeholder="Enter File Name" class="mb-4 p-2 border border-gray-300 rounded w-full"  required>
+                <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">GET</button>
+            </form>
+        </div>
+
+        <div id="uploadResponsed" class="w-full"></div>
+
+    </div>
+
+</body>
+</html>
